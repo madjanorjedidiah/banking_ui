@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+
+.transButton {
+  background-color : '#347ecf'!important;
+  padding : '15px'; 
+  borderRadius : '5px'; 
+  color : 'white';
+  fontSize : '20px';
+}
