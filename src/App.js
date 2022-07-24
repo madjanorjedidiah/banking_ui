@@ -14,6 +14,10 @@ import Registration from './components/Body/registration';
 import {Route, Routes} from "react-router-dom";
 import Transact from './components/Body/transact';
 import DepositTypes from './components/Body/deposit_types';
+import Withdraw from './components/Body/withdrawal';
+import CheckBalance from './components/Body/balance';
+import OwnAccountDeposit from './components/Body/own_account_deposit';
+
 
 
 function App() {
@@ -35,6 +39,9 @@ function App() {
           <Route path="/signup" element={<Registration/>} />
           <Route path="/transact" element={<Transact/>} />
           <Route path="/deposit_types" element={<DepositTypes/>} />
+          <Route path="/withdraw" element={<Withdraw/>} />
+          <Route path="/balance" element={<CheckBalance/>} />
+          // <Route path="/account_dep" element={<OwnAccountDeposit/>} />
         </Routes>
         <Footer/>
       </div>

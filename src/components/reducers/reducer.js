@@ -1,4 +1,6 @@
 import {combineReducers} from "redux";
+import CashDeposit from '../../components/Body/cash_deposit';
+
 
 
 const user = []
@@ -45,9 +47,20 @@ const login_reducer = (state=false, action) => {
 }
 
 
+const modal_reducer = (state=false, action) => {
+	switch(action.type){
+		case "show":
+			return !state
+		case "hide":
+			return state
+		default:
+		return state;
+	}
+}
+
 const register_reducer = (state=user, action) => {
 	switch(action.type){
-		case "register":
+		case "cash":
 			return {
 				...state,
 				user : [action.payload]
@@ -58,12 +71,15 @@ const register_reducer = (state=user, action) => {
 }
 
 
+
+
 const rootReducer = combineReducers(
 	{
 		errMsg_reducer,
 		register_reducer,
 		logout_reducer,
 		login_reducer,
+		modal_reducer,
 		loggedInUser
 	})
 
