@@ -3,13 +3,13 @@ import {Link} from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import './transact.css';
 import balance from '../../images/balance.jpg'
-import withdraw from '../../images/withdraw.png'
+import withdrawed from '../../images/withdraw.png'
 import enquire from '../../images/enquire.jpg'
 import deps from '../../images/deps.jpg'
 
 
 
-const Transact = () => {
+const Transact = (props) => {
 
    const loggedInUser = useSelector(state => state.loggedInUser)
    const login = useSelector(state => state.login_reducer)
@@ -32,9 +32,9 @@ const Transact = () => {
 
         <div className="ron d-inline-block col-md-5">
           <div className="3">
-            <img src={withdraw} width="20%" height="50%"/>
+            <img src={withdrawed} width="20%" height="50%"/>
           </div>
-          <Link to=""><p className="pgh" style={{marginTop:"20px"}}> Withdrawal </p></Link>
+          <Link to="/withdraw"><p className="pgh" style={{marginTop:"20px"}}> Withdrawal </p></Link>
         </div>
 
         <div className="ron d-inline-block col-md-5">

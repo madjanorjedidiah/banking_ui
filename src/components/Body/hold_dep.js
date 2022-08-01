@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import Modal from './modal';
@@ -17,8 +17,6 @@ const DepositTypes = (props) => {
    const [bankB, setBankB] = useState("")
    const [success, setSuccess] = useState("")
    const [error, setError] = useState("")
-   const [fromAccount, setFromAccount] = useState("")
-   const [toAccount, setToAccount] = useState("")
    const [receipientAccntN, setReceipientAccntN] = useState("")
   const modal_show = useSelector(state => state.modal_reducer)
   
@@ -67,9 +65,9 @@ const DepositTypes = (props) => {
     }
     else if (selected_value == 'own_account'){
       var data = {
-        sender_account_number : fromAccount,
         amount : amount,
-        reciever_account_number : toAccount
+        account_number : accntNumber,
+        reciever_account_number : receipientAccntN
       }
       return sendDeposit("http://bankasugo.herokuapp.com/wallet_to_wallet", data);
     }
@@ -89,13 +87,8 @@ const DepositTypes = (props) => {
             response.json().then(json => {
             // console.log(json.message);
             setSuccess("Deposit made successfully");
-            setAmount("")
-            setReceipientAccntN("")
-            setBankB("")
+            setAmountCash("")
             setAccntNumber("")
-            setBankN("")
-            setFromAccount("")
-            setToAccount("")
           })
         }
         setError(response.message)
@@ -140,22 +133,20 @@ const DepositTypes = (props) => {
             </div>
             <div className="dd col-md-12 d-flex justify-content-center">
               <input type="text" 
-              onMouseEnter={e=>e.target.focus()}
               placeholder="Enter your account number"
               onChange={(event) => setAccntNumber(event.target.value)}  
               value={accntNumber} 
-              style={{marginBottom:"15px", padding: "10px", fontSize: "17px", color:"black", }} />
+              style={{marginBottom:"15px", padding: "10px", fontSize: "17px", color:"black", float:"left"}} />
             </div>
             <div className="dd col-md-12 d-flex justify-content-center">
               <input type="text" 
-              onMouseEnter={e=>e.target.focus()}
               placeholder="Enter amount"
               value={amount} 
               onChange={(e) => setAmount(e.target.value)}
-              style={{marginBottom:"10px", padding: "10px", fontSize: "17px", color:"black", }} />
+              style={{marginBottom:"10px", padding: "10px", fontSize: "17px", color:"black", float:"left"}} />
             </div>
             <div className="dd col-md-12 d-flex justify-content-center">
-              <button onClick={() => getModal()} style={{backgroundColor:"#347ecf", padding: "10px", fontSize: "25px", color:"white", width:"150px", }}> Proceed </button>
+              <button onClick={() => getModal()} style={{backgroundColor:"#347ecf", padding: "10px", fontSize: "25px", color:"white", width:"150px", float:"left"}}> Proceed </button>
             </div>
           </div>   
           </>
@@ -171,50 +162,45 @@ const DepositTypes = (props) => {
               <h4 className="text-center col-md-12" style={{marginBottom:"20px", width:"100%"}}> Depositors Details  </h4>
             </div>
             <div className="dd col-md-12 d-flex justify-content-center">
-              <input type="text"
-              onMouseEnter={e=>e.target.focus()} 
+              <input type="text" 
               value={accntNumber} 
               onChange={(e) => setAccntNumber(e.target.value)}
               placeholder={accntNumber ? accntNumber : "Enter your account number"} 
-              style={{marginBottom:"15px", padding: "10px", fontSize: "17px", color:"black", }} />
+              style={{marginBottom:"15px", padding: "10px", fontSize: "17px", color:"black", float:"left"}} />
             </div>
             <div className="dd col-md-12 d-flex justify-content-center">
               <h4 className="text-center col-md-12" style={{marginBottom:"20px", width:"100%"}}> Receipient Details  </h4>
             </div>
             <div className="dd col-md-12 d-flex justify-content-center">
-              <input type="text"
-              onMouseEnter={e=>e.target.focus()} 
+              <input type="text" 
               value={bankN} 
               onChange={(e) => setBankN(e.target.value)}
               placeholder={bankN ? bankN : "Enter bank name"} 
-              style={{marginBottom:"10px", padding: "15px", fontSize: "17px", color:"black", }} />
+              style={{marginBottom:"10px", padding: "15px", fontSize: "17px", color:"black", float:"left"}} />
             </div>
             <div className="dd col-md-12 d-flex justify-content-center">
-              <input type="text"
-              onMouseEnter={e=>e.target.focus()} 
+              <input type="text" 
               value={bankB} 
               onChange={(e) => setBankB(e.target.value)}
               placeholder={bankB ? bankB : "Enter bank branch"} 
-              style={{marginBottom:"10px", padding: "15px", fontSize: "17px", color:"black", }} />
+              style={{marginBottom:"10px", padding: "15px", fontSize: "17px", color:"black", float:"left"}} />
             </div>
             <div className="dd col-md-12 d-flex justify-content-center">
-              <input type="text"
-              onMouseEnter={e=>e.target.focus()} 
+              <input type="text" 
               value={receipientAccntN} 
               onChange={(e) => setReceipientAccntN(e.target.value)}
               placeholder={receipientAccntN ? receipientAccntN : "Enter receipient account number"} 
-              style={{marginBottom:"10px", padding: "15px", fontSize: "17px", color:"black", }} />
+              style={{marginBottom:"10px", padding: "15px", fontSize: "17px", color:"black", float:"left"}} />
             </div>
             <div className="dd col-md-12 d-flex justify-content-center">
-              <input type="text"
-              onMouseEnter={e=>e.target.focus()} 
+              <input type="text" 
               value={amount} 
               onChange={(e) => setAmount(e.target.value)}
               placeholder={amount ? amount : "Enter amount"} 
-              style={{marginBottom:"10px", padding: "15px", fontSize: "17px", color:"black", }} />
+              style={{marginBottom:"10px", padding: "15px", fontSize: "17px", color:"black", float:"left"}} />
             </div>
             <div className="dd col-md-12 d-flex justify-content-center">
-              <button onClick={() => getModal()} style={{backgroundColor:"#347ecf", padding: "10px", fontSize: "25px", color:"white", width:"150px", }}> Proceed </button>
+              <button onClick={() => getModal()} style={{backgroundColor:"#347ecf", padding: "10px", fontSize: "25px", color:"white", width:"150px", float:"left"}}> Proceed </button>
             </div>
           </div>       
           </>
@@ -230,34 +216,13 @@ const DepositTypes = (props) => {
               <h4 className="text-center col-md-12" style={{marginBottom:"20px", width:"100%"}}> Please fill the form  </h4>
             </div>
             <div className="dd col-md-12 d-flex justify-content-center">
-              <input 
-              type="text" 
-              value={fromAccount}
-              onChange={e => setFromAccount(e.target.value)}
-              onMouseEnter={e=>e.target.focus()} 
-              placeholder="From Account" 
-              style={{marginBottom:"15px", padding: "10px", fontSize: "17px", color:"black", }} />
+              <input type="text" placeholder={accntNumber ? accntNumber : "Enter your account number"} style={{marginBottom:"15px", padding: "10px", fontSize: "17px", color:"black", float:"left"}} />
             </div>
             <div className="dd col-md-12 d-flex justify-content-center">
-              <input 
-              type="text"
-              value={toAccount} 
-              onChange={e => setToAccount(e.target.value)}
-              onMouseEnter={e=>e.target.focus()} 
-              placeholder="To Account "
-              style={{marginBottom:"15px", padding: "10px", fontSize: "17px", color:"black", }} />
+              <input type="text" placeholder={amount ? amount : "Enter amount"} style={{marginBottom:"10px", padding: "15px", fontSize: "17px", color:"black", float:"left"}} />
             </div>
             <div className="dd col-md-12 d-flex justify-content-center">
-              <input 
-              type="text"
-              value={amount} 
-              onChange={e => setAmount(e.target.value)}
-              onMouseEnter={e=>e.target.focus()} 
-              placeholder="Enter amount" 
-              style={{marginBottom:"10px", padding: "10px", fontSize: "17px", color:"black", }} />
-            </div>
-            <div className="dd col-md-12 d-flex justify-content-center">
-              <button onClick={() => getModal()} style={{backgroundColor:"#347ecf", padding: "10px", fontSize: "25px", color:"white", width:"150px", }}> Proceed </button>
+              <button onClick={() => getModal()} style={{backgroundColor:"#347ecf", padding: "10px", fontSize: "25px", color:"white", width:"150px", float:"left"}}> Proceed </button>
             </div>
           </div>   
           </>
@@ -265,7 +230,7 @@ const DepositTypes = (props) => {
     }   
 
    return (
-    <div style={{marginBottom: '120px'}}>
+    <div>
       <div className="col-md-12 d-flex justify-content-center" style={{marginBottom: "40px"}}>
         <div className="d-block p-2 d-flex justify-content-center col-md-12" >
           <div className="row d-flex justify-content-center" style={{width: '70%', marginTop : '50px', backgroundColor : 'transparent', borderRadius : '5px'}}>
@@ -283,12 +248,12 @@ const DepositTypes = (props) => {
         </div>
      </div>
      <div className="col-md-12 d-flex justify-content-center">
-        <div className="d-block  d-flex justify-content-center">
+        <div className="d-block p-2 d-flex justify-content-center">
           {act === "" ? "" : <GetDepositType/>}
         </div>
      </div>
      <div className="col-md-12 res d-flex justify-content-center">
-       {success ? <div bg-success text-white>{success}</div> : <div bg-danger text-white>{error}</div> }
+       {success ? success : error }
      </div>
      {modal_show ? <Modal onClose={() => onClose()} onContinue={() => onContinue()} /> : ''}
   </div>

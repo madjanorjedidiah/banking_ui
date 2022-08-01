@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { useTable } from "react-table";
 
 
-function AllTransactions(){
+function AllTransactions(props){
 
 		
 		 return (

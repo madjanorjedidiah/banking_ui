@@ -4,7 +4,7 @@ import { useTable, usePagination } from 'react-table';
 import './transactions.css';
 
 
-export function TodayTransact() {
+export function TodayTransact(props) {
     const [products, setProducts] = useState([]);
 
     //  fetch the data using axios(an http client library) 

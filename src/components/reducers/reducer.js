@@ -1,6 +1,4 @@
 import {combineReducers} from "redux";
-import CashDeposit from '../../components/Body/cash_deposit';
-
 
 
 const user = []
@@ -30,7 +28,7 @@ const loggedInUser = (state=user, action) => {
 const logout_reducer = (state=false, action) => {
 	switch(action.type){
 		case "logout":
-			return !state
+			return true
 		default:
 		return state;
 	}
@@ -40,7 +38,7 @@ const logout_reducer = (state=false, action) => {
 const login_reducer = (state=false, action) => {
 	switch(action.type){
 		case "login":
-			return !state
+			return true
 		default:
 		return state;
 	}
@@ -50,9 +48,9 @@ const login_reducer = (state=false, action) => {
 const modal_reducer = (state=false, action) => {
 	switch(action.type){
 		case "show":
-			return !state
+			return true
 		case "hide":
-			return state
+			return false
 		default:
 		return state;
 	}
